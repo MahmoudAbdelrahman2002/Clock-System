@@ -244,11 +244,6 @@ typedef enum
 	FEIE = 7   /* FIFO Error Interrupt Enable */
 } DMA_FIFO_CONTROL_BITS_t;
 
-
-
-/******************************* I2C Register Definition Structure *******************************/
-
-
 /******************************* UART Register Definition Structure *******************************/
 
 #define USART1_BASE_ADDRESS 0x40011000UL
@@ -277,33 +272,9 @@ typedef struct{
 
 /******************************* SPI Register Definition Structure *******************************/
 
-/******************************* CRC Register Definition Structure *******************************/
 
-#define CRC_BASE_ADDRESS        0x40023000UL
+/******************************* I2C Register Definition Structure *******************************/
 
-typedef struct
-{
-    volatile uint32_t DR;           /**< @brief CRC data register               Address offset 0x00 */
-    volatile uint32_t IDR;          /**< @brief CRC independent data register   Address offset 0x04 */
-    volatile uint32_t CR;           /**< @brief CRC control register            Address offset 0x08 */
-}CRC_RegDef_t;
-
-#define CRC         ((CRC_RegDef_t*)CRC_BASE_ADDRESS)
-
-/******************************* FLASH DRIVER Register Definition Structure *******************************/
-#define FLASH_BASE_ADDRESS   	0x40023C00UL
-
-typedef struct
-{
-    volatile uint32_t ACR;          /**< @brief Flash access control register   Address offset 0x00 */
-    volatile uint32_t KEYR;         /**< @brief Flash key register              Address offset 0x04 */
-    volatile uint32_t OPTKEYR;      /**< @brief Flash option key register       Address offset 0x08 */
-    volatile uint32_t SR;           /**< @brief Flash status register           Address offset 0x0C */
-    volatile uint32_t CR;           /**< @brief Flash control register          Address offset 0x10 */
-    volatile uint32_t OPTCR;        /**< @brief Flash option control register   Address offset 0x14 */
-}FLASH_RegDef_t;
-
-#define FLASH   ((FLASH_RegDef_t*)FLASH_BASE_ADDRESS)
 
 #endif
 /********************************************************************************************/
