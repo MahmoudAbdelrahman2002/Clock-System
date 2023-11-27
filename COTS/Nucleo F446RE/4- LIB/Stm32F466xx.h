@@ -180,62 +180,6 @@ typedef struct
 
 #define EXTI			 ((EXTI_RegDef_t *)EXTI_BASE_ADDRESS)
 
-/******************************* DMA Register Definition Structure *******************************/
-#define DMA1_BASE_ADRESS		 0x40026000U
-#define DMA2_BASE_ADRESS		 0x40026400U
-
-typedef struct
-{
-	volatile uint32_t CR;	/* DMA Stream x Configuration Register */
-	volatile uint32_t NDTR; /* DMA Stream x Number of Data Register */
-	volatile uint32_t PAR;	/* DMA Stream x Peripheral Address Register */
-	volatile uint32_t M0AR; /* DMA Stream x Memory 0 Address Register */
-	volatile uint32_t M1AR; /* DMA Stream x Memory 1 Address Register */
-	volatile uint32_t FCR;	/* DMA Stream x FIFO Control Register */
-
-} DMA_Stream_RegDef_t;
-
-typedef struct
-{
-	volatile uint16_t ISR[4];				/* DMA Interrupt Status Registers */
-	volatile uint16_t IFCR[4];				/* DMA Interrupt Flag Clear Registers */
-	volatile DMA_Stream_RegDef_t STREAM[8]; /* DMA Stream Registers */
-
-} DMA_RegDef_t;
-
-#define DMA1              ((DMA_RegDef_t *)DMA1_BASE_ADDRESS)
-#define DMA2              ((DMA_RegDef_t *)DMA2_BASE_ADDRESS)
-
-typedef enum
-{
-	EN = 0,		 /* DMA Stream Enable */
-	DMEIE = 1,	 /* Direct Mode Error Interrupt Enable */
-	TEIE = 2,	 /* Transfer Error Interrupt Enable */
-	HTIE = 3,	 /* Half Transfer Interrupt Enable */
-	TCIE = 4,	 /* Transfer Complete Interrupt Enable */
-	PFCTRL = 5,	 /* Peripheral Flow Controller */
-	DIR = 6,	 /* Data Transfer Direction */
-	CIRC = 8,	 /* Circular Mode */
-	PINC = 9,	 /* Peripheral Increment Mode */
-	MINC = 10,	 /* Memory Increment Mode */
-	PSIZE = 11,	 /* Peripheral Size */
-	MSIZE = 13,	 /* Memory Size */
-	PINCOS = 15, /* Peripheral Increment Offset Size */
-	PL = 16,	 /* Priority Level */
-	DBM = 18,	 /* Double Buffer Mode */
-	CT = 19,	 /* Current Target Memory */
-	PBURST = 21, /* Peripheral Burst Transfer Configuration */
-	MBURST = 23, /* Memory Burst Transfer Configuration */
-	CHSEL = 25	 /* Channel Selection */
-} DMA_STREAM_CONFIGURATION_BITS_t;
-
-typedef enum
-{
-	FTH = 0,   /* FIFO Threshold Selection */
-	DMDIS = 2, /* Direct Mode Disable */
-	FS = 3,	   /* FIFO Status */
-	FEIE = 7   /* FIFO Error Interrupt Enable */
-} DMA_FIFO_CONTROL_BITS_t;
 
 /******************************* UART Register Definition Structure *******************************/
 
@@ -280,11 +224,11 @@ typedef struct
 	volatile uint32_t I2C_CCR;
 	volatile uint32_t I2C_TRISE;
 	volatile uint32_t I2C_FLTR;
-}I2C_REG_t;
+}I2C_RegDef_t;
 
-#define I2C1 ((I2C_REG_t *)I2C1_BASE_ADDRESS)
-#define I2C2 ((I2C_REG_t *)I2C2_BASE_ADDRESS)
-#define I2C3 ((I2C_REG_t *)I2C3_BASE_ADDRESS)
+#define I2C1 ((I2C_RegDef_t *)I2C1_BASE_ADDRESS)
+#define I2C2 ((I2C_RegDef_t *)I2C2_BASE_ADDRESS)
+#define I2C3 ((I2C_RegDef_t *)I2C3_BASE_ADDRESS)
 
 typedef enum
 {
@@ -384,9 +328,14 @@ typedef enum
 
 } I2C_FLTR_BITS_t;
 
+
+
+
 /******************************* SPI Register Definition Structure *******************************/
 
 
+
+/******************************* DMA Register Definition Structure *******************************/
 
 
 
