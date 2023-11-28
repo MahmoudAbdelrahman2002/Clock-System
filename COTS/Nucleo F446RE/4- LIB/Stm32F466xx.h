@@ -336,6 +336,60 @@ typedef enum
 
 
 /******************************* DMA Register Definition Structure *******************************/
+#define DMA1_BASE_ADDRESS		 0x40026000U
+#define DMA2_BASE_ADDRESS		 0x40026400U
+
+typedef struct
+{
+	volatile uint32_t CR;	/* DMA Stream x Configuration Register */
+	volatile uint32_t NDTR; /* DMA Stream x Number of Data Register */
+	volatile uint32_t PAR;	/* DMA Stream x Peripheral Address Register */
+	volatile uint32_t M0AR; /* DMA Stream x Memory 0 Address Register */
+	volatile uint32_t M1AR; /* DMA Stream x Memory 1 Address Register */
+	volatile uint32_t FCR;	/* DMA Stream x FIFO Control Register */
+
+} DMA_Stream_RegDef_t;
+
+#define DMA1              ((DMA_RegDef_t *)DMA1_BASE_ADDRESS)
+#define DMA2              ((DMA_RegDef_t *)DMA2_BASE_ADDRESS)
+
+
+
+/********************* Macros for DMA registers            *************************/
+#define DMA1_ISR ((uint32_t*)(DMA1_BASE_ADDRESS))
+#define DMA1_IFCR ((uint32_t*)(DMA1_BASE_ADDRESS+8))
+#define DMA1_SCRx(X) (*(uint32_t*)(DMA1_BASE_ADDRESS+0x010UL+0x018UL*X))
+#define DMA1_SNDTRx(X) (*(uint32_t*)(DMA1_BASE_ADDRESS+0x014+0x018*X))
+#define DMA1_SPARx(X) (*(uint32_t*)(DMA1_BASE_ADDRESS+0x018+0x018*X))
+#define DMA1_SM0ARx(X) (*(uint32_t*)(DMA1_BASE_ADDRESS+0x01c+0x018*X))
+#define DMA1_SM1ARx(X) (*(uint32_t*)(DMA1_BASE_ADDRESS+0x020+0x018*X))
+#define DMA1_SFCRx(X) (*(uint32_t*)(DMA1_BASE_ADDRESS+0x024+0x018*X))
+
+/************************************************************************************/
+/******************************** Register Access ***********************************/
+/************************************************************************************/
+#define  DMA1_SCR_CHSEL                             25
+#define  DMA1_SCR_PRIORITY                          16
+#define  DMA1_SCR_PINC                              9
+#define  DMA1_SCR_MINC                              10
+#define  DMA1_SCR_DMA1_TRANSIMITION_MODE            6
+#define  DMA1_SCR_MODE                              2
+#define  DMA1_SCR_PSIZE                             11
+#define  DMA1_SCR_MSIZE                             13
+#define  DMA1_IFCR_LOW                              0
+#define  DMA1_IFCR_HIGH                             1
+#define  DMA1_HIGH                                  1
+#define  DMA1_LOW                                   0
+#define  DMA1_LIFCR_CTCIF0                          5
+#define  DMA1_LIFCR_CTCIF1                          11
+#define  DMA1_LIFCR_CTCIF2                          21
+#define  DMA1_LIFCR_CTCIF3                          27
+#define  DMA1_HIFCR_CTCIF4                          5
+#define  DMA1_HIFCR_CTCIF5                          11
+#define  DMA1_HIFCR_CTCIF6                          21
+#define  DMA1_HIFCR_CTCIF7                          27
+
+
 
 
 
