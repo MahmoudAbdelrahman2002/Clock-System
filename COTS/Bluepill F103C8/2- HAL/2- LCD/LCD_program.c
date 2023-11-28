@@ -1,12 +1,4 @@
-/*=================================================================================*/
-/*  File        : LCD Program.c                                                    */
-/*  Description : This Program file includes LCD program                           */
-/*  Author      : Tarek Ahmed Abd El Wahab. Embedded SW Engineer                   */
-/*  Date        : 19/10/2023                                                       */
-/*  Linkedin    : https://www.linkedin.com/in/tarek-el-shafei-647698205/           */
-/*  Git account : https://github.com/Tarek1482000?tab=repositories                 */
-/*  mail        : tarekahmed0128@gmil.com                                          */
-/*=================================================================================*/
+
 #include "../../LIB/STD_TYPES.h"
 #include "../../LIB/BIT_MATH.h"
 #include "../../LIB/stm32f103xx.h"
