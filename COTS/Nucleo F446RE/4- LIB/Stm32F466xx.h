@@ -331,10 +331,31 @@ typedef enum
 
 
 
-/******************************* SPI Register Definition Structure *******************************/
+/******************** SPI Register Definition Structure ****************/
 
 
+#define SPI3_BASE_ADDRESS		    0x40003C00UL
+#define SPI2_BASE_ADDRESS		    0x40003800UL
 
+#define SPI4_BASE_ADDRESS		    0x40013400UL
+#define SPI1_BASE_ADDRESS		    0x40013000UL
+typedef struct
+{
+	volatile uint32_t SPI_CR1;
+	volatile uint32_t SPI_CR2;
+	volatile uint32_t SPI_SR;
+	volatile uint32_t SPI_DR;
+	volatile uint32_t SPI_CRCPR;
+	volatile uint32_t SPI_RXCRCR;
+  	volatile uint32_t SPI_TXCRCR;
+  	volatile uint32_t SPI_I2SCFGR;
+  	volatile uint32_t SPI_I2SPR;
+}SPI_RegDef_t;
+
+#define SPI1	((SPI_RegDef_t*)SPI1_BASE_ADDRESS)
+#define SPI2	((SPI_RegDef_t*)SPI2_BASE_ADDRESS)
+#define SPI3	((SPI_RegDef_t*)SPI3_BASE_ADDRESS)
+#define SPI4	((SPI_RegDef_t*)SPI4_BASE_ADDRESS)
 /******************************* DMA Register Definition Structure *******************************/
 #define DMA1_BASE_ADDRESS		 0x40026000U
 #define DMA2_BASE_ADDRESS		 0x40026400U
