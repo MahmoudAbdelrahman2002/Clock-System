@@ -6,6 +6,7 @@
 #include "../../LIB/Stm32F466xx.h"
 #include "../../LIB/ErrorType.h"
 #include "../../LIB/Utils.h"
+#include "../DMA/DMA1_interface.h"
 
 
 #include "I2C_Interface.h"
@@ -61,6 +62,8 @@ Error_State_t I2C_Init(const I2C_Configs_t * I2C_Configs)
 
 		/*Set SCL Frequency*/
 		I2C_Set_SCL_Frequency(I2C_Configs);
+
+
 	}
 	else {
 
@@ -194,6 +197,58 @@ Error_State_t I2C_Master_Transmit(const I2C_Configs_t * I2C_Configs , uint8_t Sl
 	}
 	return Error_State ;
 }
+Error_State_t I2C_Master_Transmit_DMA(const I2C_Configs_t * I2C_Configs , uint8_t SlaveADD , uint8_t * DataToSend, uint8_t data_Size,DMA1_CONFIGRATION_t* dma_tx_config )
+{
+	Error_State_t	Error_State = OK;
+
+	Error_State = I2C_CheckConfigs(I2C_Configs);
+
+	uint8_t Counter=0;
+
+	if (OK == Error_State)
+	{
+
+		/*Wait till Bus is FREE (Not busy)*/
+		while((GET_BIT(I2Cs[I2C_Configs->I2C_Num]->I2C_SR2,FLAGS_SR2_BUSY)));
+
+		/*Enable I2C*/
+		I2Cs[I2C_Configs->I2C_Num]->I2C_CR1 |= (1<<PE_BIT);
+
+		/*Send Start Condition*/
+		I2C_Send_Start_Condition(I2C_Configs->I2C_Num);
+
+		/*Send Slave Address With Write Signal (LSB = 0)*/
+	//	I2Cs[I2C_Configs->I2C_Num]->I2C_DR = (SlaveADD);
+		uint8_t slaveAdd_var = SlaveADD;
+		DMA1_send_Data(dma_tx_config,  &slaveAdd_var, &(I2Cs[I2C_Configs->I2C_Num]->I2C_DR),1);
+		/*Wait Till Address is Sent*/
+		while (!(GET_BIT(I2Cs[I2C_Configs->I2C_Num]->I2C_SR1,FLAGS_SR1_ADDR)));
+
+		/*Clear ADDR*/
+		I2C_CLR_ADDR(I2C_Configs->I2C_Num) ;
+
+		/*Send data Bytes till Buffer ends*/
+		while (Counter <=data_Size)
+		{
+			/*wait till TxD Register empty*/
+			while (!(GET_BIT(I2Cs[I2C_Configs->I2C_Num]->I2C_SR1,FLAGS_SR1_TXE)));
+
+			/*Write data in DR*/
+//			I2Cs[I2C_Configs->I2C_Num]->I2C_DR = DataToSend[Counter++];
+			DMA1_send_Data(dma_tx_config, DataToSend+Counter, &(I2Cs[I2C_Configs->I2C_Num]->I2C_DR),1);
+			/*wait till Byte transfer is finished*/
+			while (!(GET_BIT(I2Cs[I2C_Configs->I2C_Num]->I2C_SR2,FLAGS_SR1_BTF)));
+		}
+		I2C_Send_Stop_Condition(I2C_NUMBER_1);
+	}
+	else {
+
+		/*Error => Do Nothing*/
+
+	}
+	return Error_State ;
+}
+
 /*
  * @function 		:	I2C_Master_Receive
  * @brief			:	Receive (READ) data From Slave device
@@ -215,6 +270,30 @@ Error_State_t I2C_Master_Receive(const I2C_Configs_t * I2C_Configs , uint8_t *Re
 
 		/*Read data in the DR*/
 		*ReceivedData = I2Cs[I2C_Configs->I2C_Num]->I2C_DR;
+	}
+	else {
+
+		/*Error => Do Nothing*/
+
+	}
+	return Error_State ;
+}
+
+Error_State_t I2C_Master_Receive_DMA(const I2C_Configs_t * I2C_Configs , uint8_t *destination, DMA1_CONFIGRATION_t * dma_rx_config)
+{
+	Error_State_t	Error_State = OK;
+
+	Error_State = I2C_CheckConfigs(I2C_Configs);
+
+	if (OK == Error_State)
+	{
+
+		/*wait till RxNE Register Not empty*/
+		while (!(GET_BIT(I2Cs[I2C_Configs->I2C_Num]->I2C_SR1,FLAGS_SR1_RXNE)));
+
+		/*Read data in the DR*/
+	//	*ReceivedData = I2Cs[I2C_Configs->I2C_Num]->I2C_DR;
+		DMA1_send_Data(dma_rx_config, &(I2Cs[I2C_Configs->I2C_Num]->I2C_DR),destination,1);
 	}
 	else {
 
@@ -384,7 +463,7 @@ void I2C_CLR_ADDR(I2C_I2C_NUMBER_t I2C_Num)
 @param            :    Address to Send
 @retval           :    VOID
  */
-void I2C_SendAddressPacketMTransmitter( I2C_Configs_t * Config , uint8_t Address )
+void I2C_SendAddressPacketMTransmitter_DMA( I2C_Configs_t * Config , uint8_t Address , DMA1_CONFIGRATION_t *dma_tx_config )
 {
 	/*Wait till Bus is FREE (Not busy)*/
 	while((GET_BIT(I2Cs[Config->I2C_Num]->I2C_SR2,FLAGS_SR2_BUSY)));
@@ -396,8 +475,9 @@ void I2C_SendAddressPacketMTransmitter( I2C_Configs_t * Config , uint8_t Address
 	I2C_Send_Start_Condition(Config->I2C_Num);
 
 	/*Send Slave Address With Write Signal (LSB = 0)*/
-	I2Cs[Config->I2C_Num]->I2C_DR = (Address);
-
+	//I2Cs[Config->I2C_Num]->I2C_DR = (Address);
+	uint8_t slaveAdd_var = Address;
+	DMA1_send_Data(dma_tx_config, &slaveAdd_var, &(I2Cs[Config->I2C_Num]->I2C_DR),1);
 	/*Wait Till Address is Sent*/
 	while (!(GET_BIT(I2Cs[Config->I2C_Num]->I2C_SR1,FLAGS_SR1_ADDR)));
 
@@ -414,13 +494,16 @@ void I2C_SendAddressPacketMTransmitter( I2C_Configs_t * Config , uint8_t Address
 @param            :    Data to Send
 @retval           :    VOID
  */
-void I2C_SendDataPacket(I2C_Configs_t * Config , uint8_t Data )
+void I2C_SendDataPacket_DMA(I2C_Configs_t * Config , uint8_t Data, DMA1_CONFIGRATION_t *dma_tx_config  )
 {
 	/*wait till TxD Register empty*/
 	while (!(GET_BIT(I2Cs[Config->I2C_Num]->I2C_SR1,FLAGS_SR1_TXE)));
 
 	/*Write data in DR*/
-	I2Cs[Config->I2C_Num]->I2C_DR = Data;
+	//I2Cs[Config->I2C_Num]->I2C_DR = Data;
+	uint8_t DataToSend =Data;
+	DMA1_send_Data(dma_tx_config, &DataToSend, &(I2Cs[Config->I2C_Num]->I2C_DR),1);
+
 
 	/*wait till Byte transfer is finished*/
 	while (!(GET_BIT(I2Cs[Config->I2C_Num]->I2C_SR2,FLAGS_SR1_BTF)));
@@ -434,13 +517,15 @@ void I2C_SendDataPacket(I2C_Configs_t * Config , uint8_t Data )
 @param            :    Address to Send
 @retval           :    VOID
  */
-void I2C_SendAddressPacketMReceiver( I2C_Configs_t * Config , uint8_t Address )
+void I2C_SendAddressPacketMReceiver_DMA( I2C_Configs_t * Config , uint8_t Address ,DMA1_CONFIGRATION_t *dma_tx_config )
 {
 	/*Send Start Condition*/
 	I2C_Send_Start_Condition(Config->I2C_Num);
 
 	/*Send Slave Address With Read Signal (LSB = 1)*/
-	I2Cs[Config->I2C_Num]->I2C_DR = ( Address );
+	//I2Cs[Config->I2C_Num]->I2C_DR = ( Address );
+	uint8_t slaveAdd_var = Address;
+	DMA1_send_Data(dma_tx_config, &slaveAdd_var, &(I2Cs[Config->I2C_Num]->I2C_DR),1);
 
 	/*Enable ACK*/
 	SET_BIT(I2Cs[I2C_NUMBER_1]->I2C_CR1,10);

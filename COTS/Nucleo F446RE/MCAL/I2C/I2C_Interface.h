@@ -1,6 +1,7 @@
 
 #ifndef I2C_INC_I2C_INTERFACE_H_
 #define I2C_INC_I2C_INTERFACE_H_
+#include "../DMA/DMA1_interface.h"
 
 /************** MAIN USER DEFINED VARIABLES ************/
 typedef enum {
@@ -138,8 +139,7 @@ Error_State_t I2C_Master_Transmit(const I2C_Configs_t * I2C_Configs , uint8_t Sl
 @param            :    Address to Send
 @retval           :    VOID
  */
-void I2C_SendAddressPacketMTransmitter( I2C_Configs_t * Config , uint8_t Address );
-
+void I2C_SendAddressPacketMTransmitter_DMA( I2C_Configs_t * Config , uint8_t Address , DMA1_CONFIGRATION_t *dma_tx_config );
 /*
 
 @function         :    I2C_SendDataPacket
@@ -148,8 +148,7 @@ void I2C_SendAddressPacketMTransmitter( I2C_Configs_t * Config , uint8_t Address
 @param            :    Data to Send
 @retval           :    VOID
  */
-void I2C_SendDataPacket(I2C_Configs_t * Config , uint8_t Data );
-
+void I2C_SendDataPacket_DMA(I2C_Configs_t * Config , uint8_t Data, DMA1_CONFIGRATION_t *dma_tx_config  );
 /*
 
 @function         :    I2C_SendAddressPacketMReceiver
@@ -158,8 +157,7 @@ void I2C_SendDataPacket(I2C_Configs_t * Config , uint8_t Data );
 @param            :    Address to Send
 @retval           :    VOID
  */
-void I2C_SendAddressPacketMReceiver( I2C_Configs_t * Config , uint8_t Address );
-
+void I2C_SendAddressPacketMReceiver_DMA( I2C_Configs_t * Config , uint8_t Address ,DMA1_CONFIGRATION_t *dma_tx_config );
 /*
  * @function 		:	I2C_Master_Receive
  * @brief			:	Receive (READ) data From Slave device
@@ -168,6 +166,8 @@ void I2C_SendAddressPacketMReceiver( I2C_Configs_t * Config , uint8_t Address );
  * @retval			:	Error State
  */
 Error_State_t I2C_Master_Receive(const I2C_Configs_t * I2C_Configs , uint8_t *ReceivedData);
+Error_State_t I2C_Master_Receive_DMA(const I2C_Configs_t * I2C_Configs , uint8_t *destination, DMA1_CONFIGRATION_t * dma_rx_config);
+Error_State_t I2C_Master_Transmit_DMA(const I2C_Configs_t * I2C_Configs , uint8_t SlaveADD , uint8_t * DataToSend, uint8_t data_Size,DMA1_CONFIGRATION_t* dma_tx_config );
 
 /*
  * @function 		:	I2C_Enable_DMA
@@ -193,6 +193,10 @@ Error_State_t I2C_Disable_DMA(I2C_I2C_NUMBER_t	I2C_Num);
 @retval            :    VOID
 */
  void I2C_CLR_ADDR(I2C_I2C_NUMBER_t I2C_Num);
+
+
+ Error_State_t I2C_Master_Transmit_DMA(const I2C_Configs_t * I2C_Configs , uint8_t SlaveADD , uint8_t * DataToSend, uint8_t data_Size,DMA1_CONFIGRATION_t* dma_tx_config );
+
 /***************End of MAIN FUNCTIONS*******************/
 
 #endif /* I2C_INC_I2C_INTERFACE_H_ */
