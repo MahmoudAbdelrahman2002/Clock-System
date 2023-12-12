@@ -51,7 +51,7 @@ GPIO_PinConfig_t sda_config = {.AltFunc =AF4,
 		.OutputType =OPEN_DRAIN,
 		.PinNum= DS1307_I2C_SDA_PIN,
 		.Port= DS1307_I2C_SDA_PORT,
-		.PullType= NOPULL,
+		.PullType= DS1307_I2C_PUPD,
 		.Speed = FAST
 };
 
@@ -61,7 +61,7 @@ GPIO_PinConfig_t scl_config = {.AltFunc =AF4,
 		.OutputType =OPEN_DRAIN,
 		.PinNum= DS1307_I2C_SCL_PIN,
 		.Port= DS1307_I2C_SDA_PORT,
-		.PullType= NOPULL,
+		.PullType= DS1307_I2C_PUPD,
 		.Speed = FAST
 };
 
@@ -69,12 +69,12 @@ GPIO_PinConfig_t scl_config = {.AltFunc =AF4,
 I2C_Configs_t i2c_config ={.ADD_Mode = ADDRESSING_MODE_7BITS,
 			.Chip_Address = MCU_ADDRESS,
 			.I2C_Mode = MASTER_MODE_STANDARD,
-			.I2C_Num = DS1307_I2C,
+			.I2C_Num = I2C_NUMBER_1,
 			.I2C_Pclk_MHZ = 16,
 			.SCL_Frequency_KHZ =100,
 			.Stretch_state =CLK_STRETCH_ENABLED};
 
-uint8_t ds1307_RTC_init(){
+uint8_t ds1307_RTC_init(){ //Error State return CH bit. If it's is 1 so init failed
 	//init I2C pins
 	ds1307_i2c_pin_config();
 	//init i2c driver + dma

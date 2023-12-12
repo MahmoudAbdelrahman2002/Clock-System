@@ -1,0 +1,8 @@
+../Src/MCAL/RCC/RCC_program.c:29:6:RCC_AHB1EnableCLK	16	static
+../Src/MCAL/RCC/RCC_program.c:34:6:RCC_AHB1DisableCLK	16	static
+../Src/MCAL/RCC/RCC_program.c:39:6:RCC_AHB2EnableCLK	16	static
+../Src/MCAL/RCC/RCC_program.c:43:6:RCC_AHB2DisableCLK	16	static
+../Src/MCAL/RCC/RCC_program.c:48:6:RCC_APB1EnableCLK	16	static
+../Src/MCAL/RCC/RCC_program.c:53:6:RCC_APB1DisableCLK	16	static
+../Src/MCAL/RCC/RCC_program.c:58:6:RCC_APB2EnableCLK	16	static
+../Src/MCAL/RCC/RCC_program.c:63:6:RCC_APB2DisableCLK	16	static

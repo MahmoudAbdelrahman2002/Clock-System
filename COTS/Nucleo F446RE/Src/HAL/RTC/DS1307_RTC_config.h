@@ -16,7 +16,7 @@
 #define DS1307_I2C_SDA_PIN		PIN9
 #define DS1307_I2C_SCL_PIN		PIN8
 #define I2C_Num					I2C_NUMBER_1
-
+#define DS1307_I2C_PUPD 		POLLUP
 
 
 

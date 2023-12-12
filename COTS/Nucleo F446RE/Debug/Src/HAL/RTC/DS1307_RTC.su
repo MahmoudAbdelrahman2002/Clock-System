@@ -1,0 +1,10 @@
+../Src/HAL/RTC/DS1307_RTC.c:77:9:ds1307_RTC_init	16	static
+../Src/HAL/RTC/DS1307_RTC.c:92:6:ds1307_RTC_set_DateANDTime	24	static
+../Src/HAL/RTC/DS1307_RTC.c:123:6:ds1307_RTC_get_DateANDTime	24	static
+../Src/HAL/RTC/DS1307_RTC.c:155:13:ds1307_i2c_pin_config	8	static
+../Src/HAL/RTC/DS1307_RTC.c:161:13:ds1307_i2c_config	8	static
+../Src/HAL/RTC/DS1307_RTC.c:166:13:ds1307_dma_config	8	static
+../Src/HAL/RTC/DS1307_RTC.c:177:13:ds1307_write	32	static
+../Src/HAL/RTC/DS1307_RTC.c:187:16:ds1307_read	24	static
+../Src/HAL/RTC/DS1307_RTC.c:207:16:binary_to_bcd	24	static
+../Src/HAL/RTC/DS1307_RTC.c:217:16:bcd_to_binary	24	static

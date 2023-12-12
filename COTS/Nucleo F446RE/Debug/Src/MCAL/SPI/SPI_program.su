@@ -1,0 +1,11 @@
+../Src/MCAL/SPI/SPI_program.c:25:9:SPI_u8Init	24	static
+../Src/MCAL/SPI/SPI_program.c:61:6:SPI_voidModeFaultClr	16	static
+../Src/MCAL/SPI/SPI_program.c:65:9:SPI_u8AreYouBusy	16	static
+../Src/MCAL/SPI/SPI_program.c:73:9:SPI_u8ReciveData_IT	24	static
+../Src/MCAL/SPI/SPI_program.c:88:9:SPI_u8ReciveData_pulling	24	static
+../Src/MCAL/SPI/SPI_program.c:107:9:SPI_u8SendData_IT	24	static
+../Src/MCAL/SPI/SPI_program.c:122:9:SPI_u8SendData_polling	24	static
+../Src/MCAL/SPI/SPI_program.c:141:6:SPI1_IRQHandler	8	static
+../Src/MCAL/SPI/SPI_program.c:168:6:SPI2_IRQHandler	8	static
+../Src/MCAL/SPI/SPI_program.c:195:6:SPI3_IRQHandler	8	static
+../Src/MCAL/SPI/SPI_program.c:222:6:SPI4_IRQHandler	8	static

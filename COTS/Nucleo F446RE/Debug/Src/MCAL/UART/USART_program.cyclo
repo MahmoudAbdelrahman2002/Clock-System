@@ -1,0 +1,12 @@
+../Src/MCAL/UART/USART_program.c:80:9:MUSART_u8SetConfiguration	4
+../Src/MCAL/UART/USART_program.c:174:10:MUSART_u8ReceiveCharSynch	3
+../Src/MCAL/UART/USART_program.c:202:10:MUSART_u8ReceiveCharNonSynch	3
+../Src/MCAL/UART/USART_program.c:230:10:MUSART_u8ReceiveArraySynch	3
+../Src/MCAL/UART/USART_program.c:262:10:MUSART_u8TransmitCharSynch	2
+../Src/MCAL/UART/USART_program.c:290:11:MUSART_u8TransmitArraySynch	3
+../Src/MCAL/UART/USART_program.c:307:9:MUSART_u8TransmitSynch	3
+../Src/MCAL/UART/USART_program.c:338:8:MUSART_voidClearFlags	1
+../Src/MCAL/UART/USART_program.c:356:10:MUSART_u8SetCallBack	2
+../Src/MCAL/UART/USART_program.c:373:6:USART1_IRQHandler	2
+../Src/MCAL/UART/USART_program.c:382:6:USART2_IRQHandler	2
+../Src/MCAL/UART/USART_program.c:391:6:USART3_IRQHandler	2

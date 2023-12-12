@@ -56,6 +56,7 @@
 */
 #define SPI_ONE_BIT_MASKING     1U
 #define SPI_PERIPHERSL_NUM      4U
+#define NULL ((void *) 0)
 
 static void (*SPI_pvTxEmptyCallBackLine[4])(void) = {NULL,NULL,NULL,NULL};
 static void (*SPI_pvRxNotEmptyCallBackLine[4])(void) = {NULL,NULL,NULL,NULL};
