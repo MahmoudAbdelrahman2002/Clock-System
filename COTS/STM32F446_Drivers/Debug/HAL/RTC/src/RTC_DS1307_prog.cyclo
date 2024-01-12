@@ -1,0 +1,6 @@
+RTC_DS1307_prog.c:10:6:Convert_to_BCD	1
+RTC_DS1307_prog.c:23:6:Convert_to_Num	1
+RTC_DS1307_prog.c:34:9:RTC_DS1307_Set_Date	1
+RTC_DS1307_prog.c:44:9:RTC_DS1307_Read_Date	1
+RTC_DS1307_prog.c:55:9:RTC_DS1307_init	1
+RTC_DS1307_prog.c:69:9:RTC_DS1307_Write_Seconds	1

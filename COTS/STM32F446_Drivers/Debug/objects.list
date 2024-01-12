@@ -1,3 +1,4 @@
+"./HAL/RTC/src/RTC_DS1307_prog.o"
 "./MCAL/DMA/src/DMA_prog.o"
 "./MCAL/EXTI/src/EXTI_prog.o"
 "./MCAL/GPIO/src/GPIO_prog.o"

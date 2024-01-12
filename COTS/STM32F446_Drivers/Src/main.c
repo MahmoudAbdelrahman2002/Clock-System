@@ -25,7 +25,7 @@
 #include "../MCAL/USART/inc/UART_interface.h"
 #include "../MCAL/dma/inc/DMA_interface.h"
 #include "../MCAL/I2C/inc/I2C_interface.h"
-
+#include "../HAL/RTC/inc/RTC_DS1307_interface.h"
 
 /*
 int main(void)
@@ -269,8 +269,30 @@ int main()
 
 
 
-/* I2C using DMA Transmit Receive ( worked ) */
+/* RTC try */
 
+
+ST_RTC_DS1307_Date_t cur_date =
+{
+	.seconds = 0,
+	.min = 15,
+	.hours = 21,
+	.day = 7,
+	.date = 6,
+	.month = 10 ,
+	.year = 23 ,
+};
+
+ST_RTC_DS1307_Date_t next_time =
+{
+	.seconds = 0,
+	.min = 0,
+	.hours = 0,
+	.day = 0,
+	.date = 0,
+	.month = 0 ,
+	.year = 0 ,
+};
 
 void I2C_GPIO_init(void)
 {
@@ -434,7 +456,7 @@ int main()
 		src[i] = i;
 	}
 
-	i2C_Master_Transmit_DMA(&i2c1_config, slave_add , (uint32_t)&src , 8);
+	RTC_DS1307_Set_Date(&i2c1_config, &cur_date);
 	while (1)
 	{
 
