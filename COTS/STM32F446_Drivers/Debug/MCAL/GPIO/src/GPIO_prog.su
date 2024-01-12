@@ -1,0 +1,4 @@
+../MCAL/GPIO/src/GPIO_prog.c:26:9:GPIO_u8PIN_init	24	static
+../MCAL/GPIO/src/GPIO_prog.c:82:9:GPIO_u8Set_Pin_Value	24	static
+../MCAL/GPIO/src/GPIO_prog.c:99:9:GPIO_u8Toggle_Pin_Value	24	static
+../MCAL/GPIO/src/GPIO_prog.c:116:9:GPIO_u8Read_Pin_Value	24	static

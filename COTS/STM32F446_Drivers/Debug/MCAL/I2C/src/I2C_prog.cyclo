@@ -1,0 +1,9 @@
+I2C_prog.c:16:9:I2C_init	6
+I2C_prog.c:84:9:i2C_Send_Start_Bit	2
+I2C_prog.c:104:9:i2C_Stop	1
+I2C_prog.c:114:9:i2C_Send_7_Bit_Slave_Address_With_Write	2
+I2C_prog.c:130:9:i2C_Send_7_Bit_Slave_Address_With_Read	2
+I2C_prog.c:146:9:i2C_Send_Byte	3
+I2C_prog.c:164:9:i2C_Master_Transmit_DMA	2
+I2C_prog.c:201:9:i2C_Master_Receive_DMA	2
+I2C_prog.c:251:6:I2C1_EV_IRQHandler	8

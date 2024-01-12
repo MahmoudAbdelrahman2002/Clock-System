@@ -1,0 +1,5 @@
+../MCAL/NVIC/src/NVIC_prog.c:11:9:NVIC_EnableIRQ	24	static
+../MCAL/NVIC/src/NVIC_prog.c:26:9:NVIC_DisableIRQ	24	static
+../MCAL/NVIC/src/NVIC_prog.c:42:9:NVIC_SetPendingIRQ	24	static
+../MCAL/NVIC/src/NVIC_prog.c:58:9:NVIC_ClearPendingIRQ	24	static
+../MCAL/NVIC/src/NVIC_prog.c:74:9:NVIC_GetActiveFlag	16	static

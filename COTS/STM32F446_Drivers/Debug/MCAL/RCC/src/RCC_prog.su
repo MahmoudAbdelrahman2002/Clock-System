@@ -1,0 +1,9 @@
+../MCAL/RCC/src/RCC_prog.c:10:9:RCC_Enable_HSI	16	static
+../MCAL/RCC/src/RCC_prog.c:32:9:RCC_Enable_HSE	16	static
+../MCAL/RCC/src/RCC_prog.c:54:9:RCC_Enable_PLL	24	static
+../MCAL/RCC/src/RCC_prog.c:123:9:AHP_Prescaler	24	static
+../MCAL/RCC/src/RCC_prog.c:136:9:APB1_Prescaler	24	static
+../MCAL/RCC/src/RCC_prog.c:149:9:APB2_Prescaler	24	static
+../MCAL/RCC/src/RCC_prog.c:166:9:RCC_Enable_Peripheral	24	static
+../MCAL/RCC/src/RCC_prog.c:200:9:RCC_Disable_Peripheral	24	static
+../MCAL/RCC/src/RCC_prog.c:235:9:RCC_Config	24	static

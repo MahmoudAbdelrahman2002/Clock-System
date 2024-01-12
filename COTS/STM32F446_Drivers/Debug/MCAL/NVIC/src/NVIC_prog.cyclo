@@ -1,0 +1,5 @@
+NVIC_prog.c:11:9:NVIC_EnableIRQ	2
+NVIC_prog.c:26:9:NVIC_DisableIRQ	2
+NVIC_prog.c:42:9:NVIC_SetPendingIRQ	2
+NVIC_prog.c:58:9:NVIC_ClearPendingIRQ	2
+NVIC_prog.c:74:9:NVIC_GetActiveFlag	3

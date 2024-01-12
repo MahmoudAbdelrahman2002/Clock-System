@@ -1,0 +1,9 @@
+../MCAL/I2C/src/I2C_prog.c:16:9:I2C_init	32	static
+../MCAL/I2C/src/I2C_prog.c:84:9:i2C_Send_Start_Bit	24	static
+../MCAL/I2C/src/I2C_prog.c:104:9:i2C_Stop	24	static
+../MCAL/I2C/src/I2C_prog.c:114:9:i2C_Send_7_Bit_Slave_Address_With_Write	32	static
+../MCAL/I2C/src/I2C_prog.c:130:9:i2C_Send_7_Bit_Slave_Address_With_Read	32	static
+../MCAL/I2C/src/I2C_prog.c:146:9:i2C_Send_Byte	24	static
+../MCAL/I2C/src/I2C_prog.c:164:9:i2C_Master_Transmit_DMA	40	static
+../MCAL/I2C/src/I2C_prog.c:201:9:i2C_Master_Receive_DMA	40	static
+../MCAL/I2C/src/I2C_prog.c:251:6:I2C1_EV_IRQHandler	4	static
