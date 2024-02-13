@@ -118,10 +118,10 @@ void DMA1_Stream6_IRQHandler()
 	DMA1_IFCR[DMA1_IFCR_HIGH]=(DMA1_HIGH <<DMA1_HIFCR_CTCIF6);
 	ptr_callBack[STREAM6]();
 }
-void DMA1_Stream7_IRQHandler()
+/*void DMA1_Stream7_IRQHandler()
 {
 	DMA1_IFCR[DMA1_IFCR_HIGH]=(DMA1_HIGH <<DMA1_HIFCR_CTCIF7);
 	ptr_callBack[STREAM7]();
 }
-
+*/
 

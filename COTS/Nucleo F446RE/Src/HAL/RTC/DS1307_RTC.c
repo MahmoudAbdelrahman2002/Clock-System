@@ -13,6 +13,7 @@
 #include "../../MCAL/I2C/I2C_Interface.h"
 #include "../../MCAL/GPIO/GPIO_interface.h"
 #include "../../MCAL/DMA/DMA1_interface.h"
+#include "../../MCAL/RCC/RCC_interface.h"
 
 
 static void ds1307_i2c_pin_config();
@@ -36,7 +37,7 @@ DMA1_CONFIGRATION_t i2c1RX_dma_config ={
 
 //DMA config for I2C_tx
 DMA1_CONFIGRATION_t i2c1TX_dma_config ={
-			.Memory_state= ENABLE_INCREAMENT_MEMORY,
+			.Memory_state= DISABLE_INCREAMENT_MEMORY,
 			.Periphral_state = DISABLE_INCREAMENT_PERIPHRAL,
 			.Transmition_size =ONE_BYTE,
 			.channelNum =CHANNEL1,
@@ -64,6 +65,14 @@ GPIO_PinConfig_t scl_config = {.AltFunc =AF4,
 		.PullType= DS1307_I2C_PUPD,
 		.Speed = FAST
 };
+GPIO_PinConfig_t led = {
+		.Mode = OUTPUT,
+		.OutputType =PUSH_PULL,
+		.PinNum= PIN5,
+		.Port= PORTA,
+		.PullType= NOPULL,
+		.Speed = FAST
+};
 
 // i2c config
 I2C_Configs_t i2c_config ={.ADD_Mode = ADDRESSING_MODE_7BITS,
@@ -76,16 +85,25 @@ I2C_Configs_t i2c_config ={.ADD_Mode = ADDRESSING_MODE_7BITS,
 
 uint8_t ds1307_RTC_init(){ //Error State return CH bit. If it's is 1 so init failed
 	//init I2C pins
+
+	RCC_AHB1EnableCLK(RCC_AHB1ENR_GPIOBEN);
+	RCC_AHB1EnableCLK(RCC_AHB1ENR_GPIOAEN);
+	RCC_AHB1EnableCLK(RCC_AHB1ENR_DMA1EN);
 	ds1307_i2c_pin_config();
+	RCC_APB1EnableCLK(RCC_APB1ENR_I2C1EN);
+
 	//init i2c driver + dma
 	ds1307_i2c_config();
 	I2C_Enable_DMA(I2C_Num);
 	//init dma for both I2C_RX & I2C_TX
 	ds1307_dma_config();
+
+
 	// make clk halt = 0
 	ds1307_write(0x00,DS1307_SEC_ADD);
 	//read clk halt bit
-	uint8_t clkState = ds1307_read(DS1307_SEC_ADD);
+	uint8_t clkState =55;
+	clkState = ds1307_read(DS1307_SEC_ADD);
 return clkState;
 }
 
@@ -153,8 +171,10 @@ void ds1307_RTC_get_DateANDTime(DS1307_RTC_date_t* u8_rtc_date,DS1307_RTC_time_t
 
 // function to configure the data and clk pins of the I2C by GPIO
 static void ds1307_i2c_pin_config(){
-	GPIO_u8PinInit(&sda_config);
 	GPIO_u8PinInit(&scl_config);
+	GPIO_u8PinInit(&sda_config);
+	GPIO_u8PinInit(&led);
+	GPIO_u8SetPinValue(PORTA, PIN5, PIN_HIGH);
 }
 
 // function to configure the I2C module

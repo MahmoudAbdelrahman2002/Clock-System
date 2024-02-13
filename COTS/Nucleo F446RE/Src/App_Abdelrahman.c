@@ -19,18 +19,19 @@
 #include <stdint.h>
 #include "LIB/Stm32F466xx.h"
 #include "MCAL/GPIO/GPIO_interface.h"
-#include "MCAL/RCC/RCC_interface.h"
 #include "HAL/RTC/DS1307_RTC_interface.h"
 #if !defined(__SOFT_FP__) && defined(__ARM_FP)
   #warning "FPU is not initialized, but the project is compiling for an FPU. Please initialize the FPU before use."
 #endif
 
+void DMA1_Stream7_IRQHandler(){
+	while(1){}
+}
+
 int main(void)
 {
-	RCC_AHB1EnableCLK(RCC_AHB1ENR_GPIOBEN);
-	RCC_AHB1EnableCLK(RCC_AHB1ENR_DMA1EN);
-	RCC_APB1EnableCLK(RCC_APB1ENR_I2C1EN);
 	uint8_t rtc_status = ds1307_RTC_init();
+
     /* Loop forever */
 	for(;;);
 }

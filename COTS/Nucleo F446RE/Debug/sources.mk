@@ -22,6 +22,7 @@ C_DEPS :=
 
 # Every subdirectory with source files must be described here
 SUBDIRS := \
+Src \
 Src/HAL/RTC \
 Src/MCAL/DMA \
 Src/MCAL/EXTI \
@@ -33,6 +34,5 @@ Src/MCAL/SPI \
 Src/MCAL/STK \
 Src/MCAL/SYSCFG \
 Src/MCAL/UART \
-Src \
 Startup \
 
